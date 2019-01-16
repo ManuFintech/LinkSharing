@@ -1,14 +1,18 @@
 package com.linksharing
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class SubscriptionController {
 
     def subscriptionService
 
     def index() { }
 
-
-    def  createSubscription(Topic topic,User user,Enums.Seriousness seriousness){
-        render subscriptionService.subscribe(topic,user,seriousness)
+    @Secured('permitAll')
+    def  addSubscription(){
+        def id=params.value
+        String returnedValue=subscriptionService.subscribe(id)
+        render  returnedValue
     }
 
     def getSubscription(Integer id){

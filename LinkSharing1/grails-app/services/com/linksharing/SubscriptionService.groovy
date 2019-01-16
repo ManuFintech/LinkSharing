@@ -1,5 +1,6 @@
 package com.linksharing
 
+import Enums.Seriousness
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -8,9 +9,18 @@ class SubscriptionService {
     def serviceMethod() {
 
     }
-    Subscription subscribe(Topic topic,User user,Enums.Seriousness seriousness){
-        Subscription subscription=new Subscription(topic,user,seriousness)
-        return subscription
+    String subscribe(def id){
+        Topic topic = Topic.findById(id)
+        Subscription subscription=new Subscription(topic,topic.createdBy, Seriousness.CASUAL)
+        if(!subscription.save()){
+           subscription.errors.allErrors.each {
+               println it
+           }
+            return 'Failed'
+        }else{
+            return 'Success'
+        }
+
     }
 
     Subscription subscriber(Integer id){

@@ -1,5 +1,9 @@
 package linksharing1
 
+import com.linksharing.Role
+import com.linksharing.User
+import com.linksharing.UserRole
+
 class BootStrap {
 
     def init = { servletContext ->

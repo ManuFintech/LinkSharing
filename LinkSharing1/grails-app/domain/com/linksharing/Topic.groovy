@@ -17,7 +17,7 @@ class Topic {
     static hasMany = [subscription:Subscription,resource:Resource]
 
     static constraints = {
-        name blank: true,nullable: true
+        name blank: true,nullable: true,unique: true
         createdBy blank: true, nullable: true
         visibility blank: true, nullable: true
 

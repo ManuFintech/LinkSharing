@@ -29,6 +29,20 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 grails.plugin.springsecurity.successHandler.alwaysUseDefault=true
 grails.plugin.springsecurity.logout.postOnly=false
 grails.plugin.springsecurity.auth.loginFormUrl="/UserSetup/loginUser"
-grails.plugin.springsecurity.successHandler.defaultTargetUrl="/UserSetupController/homePage"
+grails.plugin.springsecurity.successHandler.defaultTargetUrl="/userSetup/homePage"
 //grails.plugin.springsecurity.logout.afterLogoutUrl="/User/index"
+
+
+grails {
+	mail {
+		host = "smtp.gmail.com"
+		port = 465
+		username = "manu@fintechlabs.in"
+		password = "Manu@fintech"
+		props = ["mail.smtp.auth":"true",
+				 "mail.smtp.socketFactory.port":"465",
+				 "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+				 "mail.smtp.socketFactory.fallback":"false"]
+	}
+}
 

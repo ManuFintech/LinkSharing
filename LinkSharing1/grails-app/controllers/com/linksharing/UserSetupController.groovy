@@ -3,9 +3,11 @@ package com.linksharing
 import CO.UserCo
 import grails.plugin.springsecurity.annotation.Secured
 
+@Secured("permitAll")
 class UserSetupController {
 
     def userSetupService
+    String email
 
 
     def index() {
@@ -54,6 +56,36 @@ class UserSetupController {
     @Secured("permitAll")
     def homePage(){
 
-        render(view: "/UserSetupController/homePage")
+        render(view: "/userSetupController/homePage")
     }
+
+    @Secured(['permitAll'])
+    def resetPassword(){
+        println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"+email)
+       String s= userSetupService.resetuserPasword(params.OldPassword,params.NewPassword,email)
+        render(view:"/userSetupController/passwordSuccesfull" , params:[status:s])
+
+    }
+
+    @Secured('permitAll')
+    def resetPasswordPage(){
+        render (view: '/userSetupController/resetPasswordPage')
+    }
+
+    @Secured('permitAll')
+    def sendMail(){
+        println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + params.email)
+        email=params.email
+        println(";;;;;:::;;;;;;;;;;;;;;;;;;;;;;;;;;"+email)
+        userSetupService.sendMail(params.email)
+    }
+
+
+    @Secured('permitAll')
+    def passwordGeneratorView(){
+        render(view: '/userSetupController/resetPassword')
+    }
+
+
+
 }

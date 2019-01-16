@@ -4,15 +4,14 @@
     <title>Create Topic</title>
 </head>
 <body>
-%{--<g:link controller="Topic" action="createTopic">--}%
-%{--<g:textField name="name"></g:textField><br>--}%
-%{--<g:select from="${['PUBLIC','PRIVATE']}" name="Visibillity"></g:select><br>--}%
-%{--<g:submitButton name="createTopic" value="createTopic"></g:submitButton>--}%
-%{--</g:link>--}%
-<g:form controller="Topic" action="createTopic">
-    <g:textField name="Topic"></g:textField><br>
-    <g:select from="${['PUBLIC','PRIVATE']}" name="Visibillity"></g:select><br>
-    <g:submitButton name="Create Topic" value="Create Topic"></g:submitButton>
+<g:form controller="topic" action="createTopic">
+    <p>Topic Name:</p>
+    <g:textField name="topic"></g:textField><br>
+    <br>
+    <br>
+    <g:select name="visibility" from="${Enums.Visibility}"></g:select><br>
+    <br><br>
+    <g:submitButton name="createTopic">Create</g:submitButton>
 </g:form>
 </body>
 </html>

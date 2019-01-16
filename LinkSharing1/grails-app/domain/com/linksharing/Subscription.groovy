@@ -1,5 +1,7 @@
 package com.linksharing
 
+import Enums.Seriousness
+
 class Subscription {
 
     Topic topic
@@ -7,9 +9,8 @@ class Subscription {
     Seriousness seriousness
     Date dateCreated
 
-    Subscription(id, Topic topic, User user, Seriousness seriousness) {
+    Subscription(Topic topic, User user, Seriousness seriousness) {
         super()
-        this.id = id
         this.topic = topic
         this.user = user
         this.seriousness = seriousness
@@ -19,9 +20,9 @@ class Subscription {
 
 
     static constraints = {
-        topic blank: false, nullable: false
-        user blank: false, nullable: false
-        seriousness blank: false, nullable: false
-        dateCreated blank: false,nullable: false
+        topic blank: true, nullable: true
+        user blank: true, nullable: true
+        seriousness blank: true, nullable: true
+
     }
 }

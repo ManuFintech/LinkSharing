@@ -1,5 +1,6 @@
 package com.yourapp
 
+import com.linksharing.User
 import grails.plugin.springsecurity.SpringSecurityService
 import org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent
 import org.grails.datastore.mapping.engine.event.PreInsertEvent

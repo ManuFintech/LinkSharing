@@ -13,15 +13,9 @@ class TopicController {
     // @Secured(['ROLE_USER','ROLE_ADMIN'])
     @Secured("permitAll")
     def createTopic(TopicCo topicCo){
-//        if(isLoggedIn()){
-//            println("<<<<<<<<<<<<<<<<<<<<<<<<<"+principal.username)
-//        }else{
-//            println(">>>>>>>>>>>>>>>>>>>>>>>>> failed")
-//        }
-        //println(springSecurityService.currentUser)
-        //println("//////////////////////////"+user.username)
-        String s=topicService.createNewTopic(topicCo,userName)
-        // render s
+        User user=springSecurityService.currentUser
+        String s=topicService.createNewTopic(topicCo,user.username)
+         render s
     }
 
     @Secured("permitAll")
@@ -35,7 +29,7 @@ class TopicController {
     @Secured("permitAll")
     def getTopics(){
         List<Topic> listTopics=topicService.topics()
-        render listTopics
+        render (view: '/topicController/TopicInfo',model: [list:listTopics])
     }
 
 
@@ -44,7 +38,7 @@ class TopicController {
     }
 
     def deleteTopics(Integer id) {
-        Person.get(id).delete()
+        Topic.get(id).delete()
         return "Successfully deleted"
     }
 }

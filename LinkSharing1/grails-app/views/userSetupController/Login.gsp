@@ -128,5 +128,7 @@
         document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
     })();
 </script>
+
+<a href="${createLink(controller: "userSetup" ,action: "resetPasswordPage")}">ForgotPassword</a>
 </body>
 </html>
