@@ -11,8 +11,9 @@ class SubscriptionController {
     @Secured('permitAll')
     def  addSubscription(){
         def id=params.value
-        String returnedValue=subscriptionService.subscribe(id)
-        render  returnedValue
+        println("::::::::::::::::::::::::"+ params.seriousness+" "+params.topic)
+        //String returnedValue=subscriptionService.subscribe(id)
+        //render  returnedValue
     }
 
     def getSubscription(Integer id){

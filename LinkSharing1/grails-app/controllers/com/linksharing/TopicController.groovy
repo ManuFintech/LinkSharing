@@ -7,7 +7,7 @@ class TopicController {
 
     def topicService
     def springSecurityService
-
+    @Secured('permitAll')
     def index() { }
 
     // @Secured(['ROLE_USER','ROLE_ADMIN'])
@@ -40,5 +40,12 @@ class TopicController {
     def deleteTopics(Integer id) {
         Topic.get(id).delete()
         return "Successfully deleted"
+    }
+
+    @Secured('permitAll')
+    def printAjax(){
+        println("..........................." + params.param1)
+        render(template: "/topicController/example" ,model: [num: params.param1])
+
     }
 }

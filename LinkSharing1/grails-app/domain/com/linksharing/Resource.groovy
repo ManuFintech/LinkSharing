@@ -1,15 +1,16 @@
 package com.linksharing
 
 class Resource {
-
+    String fileName
     String description
     User createdBy
     Topic topic
     Date dateCreated
     Date lastUpdated
 
-    Resource(String description, User createdBy, Topic topic, Date dateCreated, Date lastUpdated) {
+    Resource(String fileName,String description, User createdBy, Topic topic, Date dateCreated, Date lastUpdated) {
         super()
+        this.fileName=fileName
         this.description = description
         this.createdBy = createdBy
         this.topic = topic

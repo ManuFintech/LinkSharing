@@ -145,6 +145,7 @@ dataSource:
 
 environments:
     development:
+        uploadFolder: "/media/manumishra/SadafHasan/Upload"
         dataSource:
             username: root
             password: admin

@@ -31,4 +31,6 @@ class UserController {
         String s=userService.delete(id)
         render s
     }
+
+
 }
