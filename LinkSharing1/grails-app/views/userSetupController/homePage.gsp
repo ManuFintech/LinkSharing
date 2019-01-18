@@ -9,10 +9,15 @@
     <g:textField name="topic"></g:textField><br>
     <br>
     <br>
-    <g:select name="visibility" from="${Enums.Visibility}"></g:select><br>
+    <g:select name="visibility" from="${Enums.Visibility}" value="{val}">
+    </g:select><br>
     <br><br>
+
     <g:submitButton name="createTopic">Create</g:submitButton>
 </g:form>
+<%
+    System.out.println(val)
+%>
 
 <a href="${createLink(controller: "Topic" ,action: "getTopics")}">Topics</a>
 

@@ -1,57 +1,61 @@
+<%@ page import="Enums.Seriousness" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>TopicInformation</title>
+    <asset:javascript src="jquery-3.3.1.min.js"/>
 </head>
-
 <body>
 <p>Under Development</p>
-%{--<g:each in="${list}" var="topic" status="counter">--}%
-    %{--<div>--}%
-        %{--<p>${counter + 1}: ${topic.name},${topic.visibility},${topic.createdBy.firstName}</p>--}%
-        %{--<g:select name="seriousness" from="${Seriousness.values()}" value="${val}"></g:select>--}%
-        %{--<a href='${createLink(controller: "Subscription", action: "addSubscription", params: [value: topic.id,serious1: val])}'--}%
-           %{--name="Subscription">Subscribe</a>--}%
-    %{--</div>--}%
-%{--</g:each>--}%
-%{--<g:form id="form" controller="subscription" action="addSubscription">--}%
-    %{--<g:each in="${list}" var="topic" status="counter">--}%
-    %{--<div>--}%
-    %{--<p>${counter + 1}: ${topic.name},${topic.visibility},${topic.createdBy.firstName}</p>--}%
-    %{--<g:select name="seriousness" from="${Seriousness.values()}" value="${val}"></g:select>--}%
-    %{--<g:submitButton name="submit" value="SUBMIT"></g:submitButton>--}%
-    %{--</div>--}%
-    %{--</g:each>--}%
-%{--</g:form>--}%
-
-<input type="button" onclick="callAjax()" value="kkkkkkkkkkk">
-
-
-
-
-
-<asset:javascript src="jquery-3.3.1.min.js"/>
+<g:each in="${list}" var="topic" status="counter">
+    <div>
+        <g:set var="dropDownValue" value="dropdown${counter}"></g:set>
+        <g:textArea name="xyz" value="${topic}"></g:textArea>
+        <g:select name="seriousness" from="${Seriousness.values()}" id="${dropDownValue}"></g:select>
+        <div id="changeSubscription">
+        <input id="subscribebutton${counter+1}" type="button" onclick="callAjax(${topic.id},document.getElementById('${dropDownValue}').value,${counter+1});" value="Subscribe">
+    </div>
+        </div>
+</g:each>
 <script type="text/javascript">
-function callAjax() {
+    function callAjax(x,y,z) {
 
-    $.ajax(
-            {
-                url: '${createLink(controller: 'topic', action: 'printAjax')}',
-                method: "POST",
-                data:{
-                    param1: 2,
-                    param2: 5
-                },
-                success: function(answer) {
-                    console.log(answer)
+        console.log(x+" "+y+" "+z)
+        $.ajax(
+        {
+            url: '${createLink(controller: 'subscription', action: 'addSubscription')}',
+            method: "POST",
+            data: {
+                param1: x,
+                param2: y,
+                param3: z
 
-                }
+            },
+            success: function (data) {
+                console.log(data.content)
+                $('#subscribebutton'+z).replaceWith(data.content)
+
             }
+        }
     );
 
 }
+
+function unsubscribe(x) {
+        console.log(x)
+$.ajax({
+    url: '${createLink(controller: 'subscription', action: 'deleteSubscriptions')}',
+    method: 'POST',
+    data:{
+      param1:x
+    },
+    success: function(data){
+        console.log("Hit is coming")
+    }
+})
+}
+
+
 </script>
-
-
 </body>
 </html>

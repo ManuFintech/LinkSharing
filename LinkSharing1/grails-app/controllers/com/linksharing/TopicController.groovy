@@ -1,6 +1,7 @@
 package com.linksharing
 
 import CO.TopicCo
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 class TopicController {
@@ -42,10 +43,5 @@ class TopicController {
         return "Successfully deleted"
     }
 
-    @Secured('permitAll')
-    def printAjax(){
-        println("..........................." + params.param1)
-        render(template: "/topicController/example" ,model: [num: params.param1])
 
-    }
 }

@@ -1,11 +1,1 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-
-    </title>
-</head>
-<body>
-${}
-</body>
-</html>
+<input id="subscribebutton${buttonvalue}" type="button" onclick="unsubscribe('${id}')" value="Unsubscribe">

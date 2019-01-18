@@ -1,5 +1,6 @@
 package com.linksharing
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 class SubscriptionController {
@@ -10,10 +11,14 @@ class SubscriptionController {
 
     @Secured('permitAll')
     def  addSubscription(){
-        def id=params.value
-        println("::::::::::::::::::::::::"+ params.seriousness+" "+params.topic)
-        //String returnedValue=subscriptionService.subscribe(id)
-        //render  returnedValue
+        println("??????????????????"+params.param1+" "+params.param2+" "+params.param3)
+        def a=params.param1
+        Enums.Seriousness seriousness=(Enums.Seriousness)params.param2
+        subscriptionService.subscribe(a,seriousness)
+        String content=g.render([template: "/topicController/example",model: [id: params.param1,buttonvalue: params.param3]])
+        println("[[[[[[[[[[[[[[[[[[[[["+content)
+        Map responseData=[content: content]
+        render(responseData as JSON)
     }
 
     def getSubscription(Integer id){
@@ -28,7 +33,12 @@ class SubscriptionController {
 
     }
 
-    def deleteSubscriptions(Integer id){
+    @Secured('permitAll')
+    def deleteSubscriptions(){
+        println(":::::::::::::::::::::::::"+params.param1)
+        def id=params.param1
         subscriptionService.deleteSubscription(id)
     }
+
+
 }

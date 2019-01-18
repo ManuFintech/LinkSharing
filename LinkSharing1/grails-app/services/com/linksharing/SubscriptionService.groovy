@@ -9,9 +9,11 @@ class SubscriptionService {
     def serviceMethod() {
 
     }
-    String subscribe(def id){
-        Topic topic = Topic.findById(id)
-        Subscription subscription=new Subscription(topic,topic.createdBy, Seriousness.CASUAL)
+    String subscribe(def param1,Seriousness param2){
+        println("::::::::::::::::::::::"+param1+" "+param2)
+        Topic topic = Topic.findById(param1)
+        println("<<<<<<<<<<<<<<<<<<<"+topic.name)
+        Subscription subscription=new Subscription(topic,topic.createdBy,param2)
         if(!subscription.save()){
            subscription.errors.allErrors.each {
                println it
@@ -37,8 +39,16 @@ class SubscriptionService {
         return lists
     }
 
-    def deleteSubscription(Integer id){
-        def s=Subscription.get(id)
-        s.delete()
+    def deleteSubscription(def id){
+        println("Hit is coming......................."+id)
+        Subscription subscription=Subscription.get(id)
+        println("+++++++++++++++++++++++"+s)
+        if(!s.delete(flush: true)){
+            subscription.errors.allErrors.each{
+                println it
+            }
+        }else {
+            println "Success"
+        }
     }
 }
