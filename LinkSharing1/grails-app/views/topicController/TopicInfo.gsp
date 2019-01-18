@@ -4,6 +4,8 @@
 <head>
     <title>TopicInformation</title>
     <asset:javascript src="jquery-3.3.1.min.js"/>
+
+
 </head>
 <body>
 <p>Under Development</p>
@@ -17,7 +19,9 @@
     </div>
         </div>
 </g:each>
+
 <script type="text/javascript">
+
     function callAjax(x,y,z) {
 
         console.log(x+" "+y+" "+z)

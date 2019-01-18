@@ -6,6 +6,8 @@
 <body>
 <sec:loggedInUserInfo field="username"/>
 <g:form controller="userSetup" action="resetPassword">
+    <p>Email:</p>
+    <g:textField name="email"></g:textField>
     <p>Old Password:</p><br>
     <g:textField name="OldPassword"></g:textField><br>
     <p>New Password:</p>

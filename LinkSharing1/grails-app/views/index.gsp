@@ -98,5 +98,7 @@
     </div>
 </g:form>
 
+<g:link controller="userSetup" action="loginUser">Login</g:link>
+
 </body>
 </html>

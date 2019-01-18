@@ -7,25 +7,16 @@ import grails.plugin.springsecurity.annotation.Secured
 class UserSetupController {
 
     def userSetupService
-    String email
+
 
 
     def index() {
         render "This is login controller."
     }
 
-//    def loginUser(String username,String password){
-//        render(view: '/userSetupController/Login')
-//
-////        boolean b=userSetupService.login(username,password)
-////        if(b){
-////            render(view:"/loginController/homePage.gsp")
-////        }else{
-////            render(view: "/notFound.gsp")
-////
-////        }
-//
-//    }
+    def loginUser(){
+        render(view: '/userSetupController/Login.gsp')
+    }
 
     @Secured("permitAll")
     def registerUser(UserCo userCo) {
@@ -61,8 +52,8 @@ class UserSetupController {
 
     @Secured(['permitAll'])
     def resetPassword(){
-        println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"+email)
-       String s= userSetupService.resetuserPasword(params.OldPassword,params.NewPassword,email)
+        println("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"+params.email)
+       String s= userSetupService.resetuserPasword(params.OldPassword,params.NewPassword,params.email)
         render(view:"/userSetupController/passwordSuccesfull" , params:[status:s])
 
     }
@@ -75,8 +66,6 @@ class UserSetupController {
     @Secured('permitAll')
     def sendMail(){
         println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + params.email)
-        email=params.email
-        println(";;;;;:::;;;;;;;;;;;;;;;;;;;;;;;;;;"+email)
         userSetupService.sendMail(params.email)
     }
 

@@ -30,14 +30,18 @@ class UserSetupService {
 
     def register(UserCo userCo){
         boolean flag=false
-        // Role role=new Role("ROLE_USER")
-        User user=new User(userCo.email,userCo.username,userCo.password,userCo.firstName,userCo.lastName,userCo.photo)
+        def role= Role.findByAuthority("ROLE_USER")
+        def user=new User(userCo.email,userCo.username,userCo.password,userCo.firstName,userCo.lastName,userCo.photo)
         if(user.validate()){
-            User u=user.save(flush: true)
-            if(u!=null){
+            if(user.save(flush: true))
+                UserRole.create(user,role,true)
+                UserRole.withSession {
+                    it.flush()
+                    it.clear()
+                }
                 flag=true
 
-            }
+
         }else{
             user.errors.allErrors.each {println(it)}
         }

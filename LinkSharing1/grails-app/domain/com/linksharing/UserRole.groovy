@@ -73,6 +73,7 @@ class UserRole implements Serializable {
 	    user nullable: false
 		role nullable: false, validator: { Role r, UserRole ur ->
 			if (ur.user?.id) {
+				println("::::::::::::::::::::::::::::::::: "+ur.user.id+" "+r.id)
 				if (UserRole.exists(ur.user.id, r.id)) {
 				    return ['userRole.exists']
 				}
