@@ -5,23 +5,28 @@ import grails.gorm.transactions.Transactional
 
 @Transactional
 class SubscriptionService {
+    def springSecurityService
 
     def serviceMethod() {
 
     }
-    String subscribe(def param1,Seriousness param2){
+    Subscription subscribe(def param1,Seriousness param2){
+        User user=springSecurityService.currentUser
         println("::::::::::::::::::::::"+param1+" "+param2)
         Topic topic = Topic.findById(param1)
-        println("<<<<<<<<<<<<<<<<<<<"+topic.name)
-        Subscription subscription=new Subscription(topic,topic.createdBy,param2)
-        if(!subscription.save()){
-           subscription.errors.allErrors.each {
-               println it
-           }
-            return 'Failed'
-        }else{
-            return 'Success'
-        }
+        println("<<<<<<<<<<<<<<<<<<<"+topic.name+" "+topic.createdBy.id)
+        Subscription subscription=new Subscription(topic,user,param2)
+        println("ssssssssssssssssssssssssssss"+subscription.id+" "+subscription.topic.id+" "+user.id)
+        subscription.save(flush:true)
+//        if(!subscription.save(flush:true)){
+//           subscription.errors.allErrors.each {
+//               println it
+//           }
+//            return 'Failed'
+//        }else{
+//            return 'Success'
+//        }
+        return subscription
 
     }
 
@@ -39,16 +44,21 @@ class SubscriptionService {
         return lists
     }
 
-    def deleteSubscription(def id){
+        def deleteSubscription(def id){
+        User user=springSecurityService.currentUser
         println("Hit is coming......................."+id)
-        Subscription subscription=Subscription.get(id)
-        println("+++++++++++++++++++++++"+s)
-        if(!s.delete(flush: true)){
+        def topic=Topic.findById(id)
+        println("qqqqqqqqqqqqqqqqqqqqqqqqq"+topic.id+" "+user.id)
+        Subscription subscription=Subscription.findByTopicAndUser(topic,user)
+        println("+++++++++++++++++++++++"+subscription)
+        if(!subscription.delete(flush: true)){
             subscription.errors.allErrors.each{
                 println it
             }
         }else {
             println "Success"
         }
+
+
     }
 }

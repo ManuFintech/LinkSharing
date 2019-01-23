@@ -92,7 +92,7 @@
         <p>Username:</p><input type="text" name="username"><br>
         <p>Password</p><input type="text" name="password"><br>
         <p>Confirm Password:</p><input type="text" name="confirmPassword"><br>
-        <p>Photo</p><input type="file" name="photo"><br><br>
+        
         <input type="submit" name="submit" value="SignUp"><br>
 
     </div>

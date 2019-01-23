@@ -37,5 +37,7 @@
     </g:uploadForm>
 </div>
 
+<g:link controller="logout" action="index">Logout</g:link>
+
 </body>
 </html>

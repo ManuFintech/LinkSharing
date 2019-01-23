@@ -7,6 +7,8 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class TopicService {
 
+    def springSecurityService
+
     def serviceMethod() {
 
     }
@@ -48,8 +50,50 @@ class TopicService {
 
     }
 
-    List<Topic> topics() {
-        List<Topic> list = Topic.findAll()
-        return list
+        def topics() {
+            User user=springSecurityService.currentUser
+            List<Topic> topicList=Topic.findAll()
+            println("tttttttttttttttttttt"+topicList)
+            List<Subscription> subscriptionList=Subscription.findAllByUser(user)
+            println("sssssssssssssssssssssss"+subscriptionList)
+            List<Long> topicsID=new ArrayList<>()
+            for(Topic t:topicList){
+                topicsID.add(t.id)
+            }
+            println(topicsID)
+
+            List<Long> topicsIDsubscribedByUser=new ArrayList<>()
+            for(Subscription s:subscriptionList){
+                topicsIDsubscribedByUser.add(s.topic.id)
+            }
+
+            println(topicsIDsubscribedByUser)
+
+            topicsID.removeAll(topicsIDsubscribedByUser)
+
+            println(topicsID)
+
+            List<Topic> listOfTopicsUnsubscribed=new ArrayList<>()
+
+            for(def d:topicsID){
+                Topic topic=Topic.findById(d)
+                listOfTopicsUnsubscribed.add(topic)
+            }
+            HashMap hashMap=new HashMap()
+            hashMap.put("subscribedByUser",subscriptionList)
+            hashMap.put("unsubcribedToUser",listOfTopicsUnsubscribed)
+            return hashMap
+
+
+
+
+
+    }
+
+    def allTopics(){
+        List<Topic> allTopics=Topic.findAll()
+        return allTopics
+
+
     }
 }

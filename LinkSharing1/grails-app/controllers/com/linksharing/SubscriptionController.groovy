@@ -14,9 +14,13 @@ class SubscriptionController {
         println("??????????????????"+params.param1+" "+params.param2+" "+params.param3)
         def a=params.param1
         Enums.Seriousness seriousness=(Enums.Seriousness)params.param2
-        subscriptionService.subscribe(a,seriousness)
-        String content=g.render([template: "/topicController/example",model: [id: params.param1,buttonvalue: params.param3]])
-        println("[[[[[[[[[[[[[[[[[[[[["+content)
+        Subscription subscription=(Subscription)subscriptionService.subscribe(a,seriousness)
+//        String content=g.render([template: "/topicController/unsubscribe", model: [id: params.param1, buttonvalue: params.param3]])
+//        println("[[[[[[[[[[[[[[[[[[[[["+content)
+//        Map responseData=[content: content]
+//        render(responseData as JSON)
+        String content=g.render(template: "/topicController/unsubscribe",model: [count:1,subscribedTopic: subscription])
+        println("ccccccccccccccccccccccccc"+content)
         Map responseData=[content: content]
         render(responseData as JSON)
     }
@@ -38,6 +42,8 @@ class SubscriptionController {
         println(":::::::::::::::::::::::::"+params.param1)
         def id=params.param1
         subscriptionService.deleteSubscription(id)
+
+
     }
 
 

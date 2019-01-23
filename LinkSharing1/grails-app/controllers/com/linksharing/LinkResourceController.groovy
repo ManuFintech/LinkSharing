@@ -1,6 +1,11 @@
 package com.linksharing
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class LinkResourceController {
 
-    def index() { }
+    @Secured("permitAll")
+    def index() {
+        render(view: "/linkResourceController/shareLink")
+    }
 }
