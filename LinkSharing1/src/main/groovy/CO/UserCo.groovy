@@ -7,9 +7,9 @@ class UserCo implements Validateable{
     String lastName
     String email
     String username
+    String phoneNumber
     String password
     String confirmPassword
-    String photo
 
     static constraints={
         firstName blank: false,unique: true,nullable: false
@@ -18,8 +18,6 @@ class UserCo implements Validateable{
         username blank: false,unique:true,nullable: false
         password blank: false,unique: true,nullable: false
         confirmPassword blank: false,nullable: false
-        photo blank: true,nullable: true
-
-
+        phoneNumber blank: false, nullable: false
     }
 }

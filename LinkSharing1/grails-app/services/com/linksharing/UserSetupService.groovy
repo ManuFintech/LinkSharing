@@ -31,7 +31,7 @@ class UserSetupService {
     def register(UserCo userCo){
         boolean flag=false
         def role= Role.findByAuthority("ROLE_USER")
-        def user=new User(userCo.email,userCo.username,userCo.password,userCo.firstName,userCo.lastName,userCo.photo)
+        def user=new User(userCo.email,userCo.username,userCo.password,userCo.firstName,userCo.lastName,userCo.phoneNumber)
         if(user.validate()){
             if(user.save(flush: true))
                 UserRole.create(user,role,true)

@@ -14,13 +14,14 @@ class User implements Serializable {
     String email
     String firstName
     String lastName
-    String photo =null
+    String photo =" "
     Boolean admin = false
     Boolean active = true
     Date dateCreated
     Date lastUpdated
     String username
     String password
+    String phoneNumber
     boolean enabled = true
     boolean accountExpired=false
     boolean accountLocked=false
@@ -32,14 +33,14 @@ class User implements Serializable {
 
     User() {}
 
-    User(String email, String username, String password, String firstName, String lastName,String photo) {
+    User(String email, String username, String password, String firstName, String lastName,String phoneNumber) {
         super()
         this.email = email
         this.username = username
         this.password = password
         this.firstName = firstName
         this.lastName = lastName
-        this.photo=photo
+        this.phoneNumber=phoneNumber
     }
 
     static hasMany = [topic:Topic, subscription:Subscription, resource:Resource, readingItem:ReadingItem,
@@ -54,6 +55,7 @@ class User implements Serializable {
         photo blank: true,nullable: true
         admin blank: false
         active blank: false
+        phoneNumber blank: false
     }
 
     static mapping = {

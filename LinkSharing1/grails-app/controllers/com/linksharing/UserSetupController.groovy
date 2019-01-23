@@ -20,7 +20,8 @@ class UserSetupController {
 
     @Secured("permitAll")
     def registerUser(UserCo userCo) {
-
+        println(":::::::::::::::::::::::"+userCo.firstName+" "+userCo.lastName+" "+userCo.username+" "+userCo.email+" "
+        +userCo.password+" "+userCo.confirmPassword+" "+userCo.phoneNumber)
         User user = User.findByUsername(userCo.username)
         if (user != null) {
             render "User already present.Plz login."
