@@ -37,7 +37,7 @@
                     <g:textArea name="description"></g:textArea>
                     <br>
                 <p>Topic:</p>
-                    <g:select name="topicList" from="${allTopics}" value="Topics" id="dropdownList"></g:select>
+                    <g:select name="topicList" from="${com.linksharing.Topic.all}" value="Topics" id="dropdownList"></g:select>
                 </div>
 
                 <!-- Modal footer -->

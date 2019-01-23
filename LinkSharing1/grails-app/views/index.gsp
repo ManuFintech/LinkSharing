@@ -1,104 +1,114 @@
-%{--<!doctype html>--}%
+
+%{--<!DOCTYPE html>--}%
 %{--<html>--}%
 %{--<head>--}%
-    %{--<meta name="layout" content="main"/>--}%
-    %{--<title>Welcome to Grails</title>--}%
+    %{--<title>Register</title>--}%
 %{--</head>--}%
 %{--<body>--}%
-%{--<content tag="nav">--}%
-    %{--<li class="dropdown">--}%
-        %{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>--}%
-        %{--<ul class="dropdown-menu">--}%
-            %{--<li class="dropdown-item"><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">App version:--}%
-                %{--<g:meta name="info.app.version"/></a>--}%
-            %{--</li>--}%
-            %{--<li role="separator" class="dropdown-divider"></li>--}%
-            %{--<li class="dropdown-item"><a href="#">Grails version:--}%
-                %{--<g:meta name="info.app.grailsVersion"/></a>--}%
-            %{--</li>--}%
-            %{--<li class="dropdown-item"><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>--}%
-            %{--<li role="separator" class="dropdown-divider"></li>--}%
-            %{--<li class="dropdown-item"><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>--}%
-        %{--</ul>--}%
-    %{--</li>--}%
-    %{--<li class="dropdown">--}%
-        %{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>--}%
-        %{--<ul class="dropdown-menu">--}%
-            %{--<li class="dropdown-item"><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>--}%
-            %{--<li class="dropdown-item"><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>--}%
-        %{--</ul>--}%
-    %{--</li>--}%
-    %{--<li class="dropdown">--}%
-        %{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>--}%
-        %{--<ul class="dropdown-menu">--}%
-            %{--<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">--}%
-                %{--<li class="dropdown-item"><a href="#">${plugin.name} - ${plugin.version}</a></li>--}%
-            %{--</g:each>--}%
-        %{--</ul>--}%
-    %{--</li>--}%
-%{--</content>--}%
 
-%{--<div class="svg" role="presentation">--}%
-    %{--<div class="grails-logo-container">--}%
-        %{--<asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>--}%
+%{--<g:form controller="UserSetup" action="registerUser">--}%
+    %{--<div>--}%
+
+        %{--<legend>Register:</legend>--}%
+        %{--<p>First Name:</p><input type="text" name="firstName"><br>--}%
+        %{--<p>Last Name:</p><input type="text" name="lastName"><br>--}%
+        %{--<p>Email:</p><input type="text" name="email"><br>--}%
+        %{--<p>Username:</p><input type="text" name="username"><br>--}%
+        %{--<p>Password</p><input type="text" name="password"><br>--}%
+        %{--<p>Confirm Password:</p><input type="text" name="confirmPassword"><br>--}%
+        %{----}%
+        %{--<input type="submit" name="submit" value="SignUp"><br>--}%
+
     %{--</div>--}%
-%{--</div>--}%
+%{--</g:form>--}%
 
-%{--<div id="content" role="main">--}%
-    %{--<section class="row colset-2-its">--}%
-        %{--<h1>Welcome to Grails</h1>--}%
-
-        %{--<p>--}%
-            %{--Congratulations, you have successfully started your first Grails application! At the moment--}%
-            %{--this is the default page, feel free to modify it to either redirect to a controller or display--}%
-            %{--whatever content you may choose. Below is a list of controllers that are currently deployed in--}%
-            %{--this application, click on each to execute its default action:--}%
-        %{--</p>--}%
-
-        %{--<div id="controllers" role="navigation">--}%
-            %{--<h2>Available Controllers:</h2>--}%
-            %{--<ul>--}%
-                %{--<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">--}%
-                    %{--<li class="controller">--}%
-                        %{--<g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>--}%
-                    %{--</li>--}%
-                %{--</g:each>--}%
-            %{--</ul>--}%
-        %{--</div>--}%
-    %{--</section>--}%
-%{--</div>--}%
+%{--<g:link controller="userSetup" action="loginUser">Login</g:link>--}%
 
 %{--</body>--}%
 %{--</html>--}%
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 </head>
 <body>
 
-<g:form controller="UserSetup" action="registerUser">
-    <div>
+<div class="container">
+    <br>
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p>
+                <a href="" class="btn btn-block btn-google"> <i class="fab fa-google"></i>   Login via Google+</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">OR</span>
+            </p>
+            <form>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="First name" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="" class="form-control" placeholder="Email address" type="email">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <select class="custom-select" style="max-width: 120px;">
+                        <option selected="">+971</option>
+                        <option value="1">+972</option>
+                        <option value="2">+198</option>
+                        <option value="3">+701</option>
+                    </select>
+                    <input name="" class="form-control" placeholder="Phone number" type="text">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                    </div>
+                    <select class="form-control">
+                        <option selected=""> Select job type</option>
+                        <option>Designer</option>
+                        <option>Manager</option>
+                        <option>Accaunting</option>
+                    </select>
+                </div> <!-- form-group end.// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Create password" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input class="form-control" placeholder="Repeat password" type="password">
+                </div> <!-- form-group// -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Have an account? <a href="">Log In</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
 
-        <legend>Register:</legend>
-        <p>First Name:</p><input type="text" name="firstName"><br>
-        <p>Last Name:</p><input type="text" name="lastName"><br>
-        <p>Email:</p><input type="text" name="email"><br>
-        <p>Username:</p><input type="text" name="username"><br>
-        <p>Password</p><input type="text" name="password"><br>
-        <p>Confirm Password:</p><input type="text" name="confirmPassword"><br>
-        
-        <input type="submit" name="submit" value="SignUp"><br>
+</div>
+<!--container end.//-->
 
-    </div>
-</g:form>
-
-<g:link controller="userSetup" action="loginUser">Login</g:link>
-
+<br><br>
 </body>
 </html>
