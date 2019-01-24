@@ -10,6 +10,7 @@ class UserCo implements Validateable{
     String phoneNumber
     String password
     String confirmPassword
+    byte[] photo
 
     static constraints={
         firstName blank: false,unique: true,nullable: false
@@ -19,5 +20,6 @@ class UserCo implements Validateable{
         password blank: false,unique: true,nullable: false
         confirmPassword blank: false,nullable: false
         phoneNumber blank: false, nullable: false
+        photo blank: true,nullable: true
     }
 }

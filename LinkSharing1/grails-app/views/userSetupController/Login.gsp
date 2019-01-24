@@ -4,151 +4,95 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <meta name="layout" content="${gspLayout ?: 'main'}"/>
     <title><g:message message="LOGIN"/></title>
     <style type="text/css" media="screen">
-    #login {
-        margin: 15px 0px;
-        padding: 0px;
+
+    .login-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        margin-left: 25%;
+    }
+    .login-form-1{
+        padding: 5%;
+        box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+    }
+    .login-form-1 h3{
         text-align: center;
+        color: #333;
     }
-    #login .inner {
-        width: 340px;
-        padding-bottom: 6px;
-        margin: 60px auto;
-        text-align: left;
-        border: 1px solid #aab;
-        background-color: #f0f0fa;
-        -moz-box-shadow: 2px 2px 2px #eee;
-        -webkit-box-shadow: 2px 2px 2px #eee;
-        -khtml-box-shadow: 2px 2px 2px #eee;
-        box-shadow: 2px 2px 2px #eee;
+    .login-container form{
+        padding: 10%;
     }
-    #login .inner .fheader {
-        padding: 18px 26px 14px 26px;
-        background-color: #f7f7ff;
-        margin: 0px 0 14px 0;
-        color: #2e3741;
-        font-size: 18px;
-        font-weight: bold;
+    .submit
+    {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+
     }
-    #login .inner .cssform p {
-        clear: left;
-        margin: 0;
-        padding: 4px 0 3px 0;
-        padding-left: 105px;
-        margin-bottom: 20px;
-        height: 1%;
+    .login-form-1 .submit{
+        font-weight: 600;
+        color: #fff;
+        background-color: #0062cc;
     }
-    #login .inner .cssform input[type="text"] {
-        width: 120px;
+    .login-form-1 .ForgetPwd{
+        color: #0062cc;
+        font-weight: 600;
+        text-decoration: none;
     }
-    #login .inner .cssform label {
-        font-weight: bold;
-        float: left;
-        text-align: right;
-        margin-left: -105px;
-        width: 110px;
-        padding-top: 3px;
-        padding-right: 10px;
-    }
-    #login #remember_me_holder {
-        padding-left: 120px;
-    }
-    #login #submit {
-        margin-left: 15px;
-    }
-    #login #remember_me_holder label {
-        float: none;
-        margin-left: 0;
-        text-align: left;
-        width: 200px
-    }
-    #login .inner .login_message {
-        padding: 6px 25px 20px 25px;
-        color: #c33;
-    }
-    #login .inner .text_ {
-        width: 120px;
-    }
-    #login .inner .chk {
-        height: 12px;
-    }
+
     </style>
 </head>
 
 <body>
-<div id="login">
-    <div class="inner">
-        <div class="fheader"><g:message message="Please Login"/></div>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+        <div class="fheader" style="text-align: center; display: block"><g:message message="Please Login"/></div>
 
         <g:if test='${flash.message}'>
             <div class="login_message">${flash.message}</div>
         </g:if>
 
         <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="cssform" autocomplete="off">
+            <div class="form-group">
             <p>
-                <label for="username"><g:message message="Username"/>:</label>
-                <input type="text" class="text_" name="${usernameParameter ?: 'username'}" id="username"/>
+                %{--<label for="username"><g:message message="Username"/>:</label>--}%
+                <input type="text" class="form-control" name="${usernameParameter ?: 'username'}" id="username" placeholder="Username"/>
             </p>
-
+            </div>
+            <div class="form-group">
             <p>
-                <label for="password"><g:message message="Password"/>:</label>
-                <input type="password" class="text_" name="${passwordParameter ?: 'password'}" id="password"/>
+                %{--<label for="password"><g:message message="Password"/>:</label>--}%
+                <input type="password" class="form-control" name="${passwordParameter ?: 'password'}" id="password" placeholder="Password"/>
             </p>
-
+            </div>
+            <div class="form-group">
             <p id="remember_me_holder">
                 <input type="checkbox" class="chk" name="${rememberMeParameter ?: 'remember-me'}" id="remember_me" <g:if test='${hasCookie}'>checked="checked"</g:if>/>
                 <label for="remember_me"><g:message message="Remember Me" /></label>
             </p>
-
+            </div>
+            <div class="form-group">
             <p>
-                <input type="submit" id="submit" value="${message(code: 'springSecurity.login.button')}"/>
+                <input type="submit" id="submit" value="${message(code: 'springSecurity.login.button')}" class="submit"/>
             </p>
+            </div>
+            <div class="form-group">
+                <a href="${createLink(controller: "userSetup" ,action: "resetPasswordPage")}" class="ForgetPwd">Forget Password?</a>
+            </div>
         </form>
     </div>
+</div>
 </div>
 <script>
     (function() {
         document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
     })();
 </script>
-
-<a href="${createLink(controller: "userSetup" ,action: "resetPasswordPage")}">ForgotPassword</a>
 </body>
 </html>
 
 
-%{--<!------ Include the above in your HEAD tag ---------->--}%
-
-%{--<body>--}%
-%{--<div id="login">--}%
-    %{--<h3 class="text-center text-white pt-5">Login form</h3>--}%
-    %{--<div class="container">--}%
-        %{--<div id="login-row" class="row justify-content-center align-items-center">--}%
-            %{--<div id="login-column" class="col-md-6">--}%
-                %{--<div id="login-box" class="col-md-12">--}%
-                    %{--<form id="login-form" class="form" action="" method="post">--}%
-                        %{--<h3 class="text-center text-info">Login</h3>--}%
-                        %{--<div class="form-group">--}%
-                            %{--<label for="username" class="text-info">Username:</label><br>--}%
-                            %{--<input type="text" name="username" id="username" class="form-control">--}%
-                        %{--</div>--}%
-                        %{--<div class="form-group">--}%
-                            %{--<label for="password" class="text-info">Password:</label><br>--}%
-                            %{--<input type="text" name="password" id="password" class="form-control">--}%
-                        %{--</div>--}%
-                        %{--<div class="form-group">--}%
-                            %{--<label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>--}%
-                            %{--<input type="submit" name="submit" class="btn btn-info btn-md" value="submit">--}%
-                        %{--</div>--}%
-                        %{--<div id="register-link" class="text-right">--}%
-                            %{--<a href="#" class="text-info">Register here</a>--}%
-                        %{--</div>--}%
-                    %{--</form>--}%
-                %{--</div>--}%
-            %{--</div>--}%
-        %{--</div>--}%
-    %{--</div>--}%
-%{--</div>--}%
-%{--</body>--}%
