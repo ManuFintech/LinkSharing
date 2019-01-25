@@ -46,5 +46,7 @@ grails {
 	}
 }
 
+grails.web.disable.multipart = false
+
 
 

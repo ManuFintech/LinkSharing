@@ -14,6 +14,7 @@ class TopicController {
     // @Secured(['ROLE_USER','ROLE_ADMIN'])
     @Secured("permitAll")
     def createTopic(TopicCo topicCo) {
+        println("tttttttttttttttttttttttttttttttttttt"+topicCo.topic+" "+topicCo.visibility)
         User user = springSecurityService.currentUser
         String s = topicService.createNewTopic(topicCo, user.username)
         render s

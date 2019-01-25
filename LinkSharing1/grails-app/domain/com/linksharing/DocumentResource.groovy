@@ -2,9 +2,13 @@ package com.linksharing
 
 class DocumentResource extends Resource {
 
-    String filePath
+    String fullPath
+    String fileName
+
+
 
     static constraints = {
-        filePath blank: false,nullable: false
+        fullPath blank: false,nullable: false
+        fileName blank: false,nullable: false
     }
 }

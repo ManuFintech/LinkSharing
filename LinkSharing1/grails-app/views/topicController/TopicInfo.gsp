@@ -21,12 +21,16 @@
 
 <div>
     <g:each in="${subscribedList}" var="unsubscribedTopic" status="counter">
-
+       <div class="card w-75">
+           <div class="card-body">
         <div id="divValue${counter + 1}">
             ${unsubscribedTopic}
             <input id="subscribedTopic${counter + 1}" type="button"
                    onclick="unsubscribe(${unsubscribedTopic.id}, ${counter+1})" value="Unsubscribe">
         </div>
+       </div>
+       </div>
+        <br>
     </g:each>
 </div>
 <br>
@@ -96,6 +100,57 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button id="closeButton" type="button" class="btn btn-danger"
+                            data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
+        Share Document
+    </button>
+
+    <!-- The Modal -->
+
+    <div class="modal" id="myModal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Share Resource</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            <div class="modal-body">
+
+                <g:if test="${flash.message}"><div class="message" role="status">${flash.message}</div></g:if>
+                <g:uploadForm controller="documentResource" action="upload" enctype="multipart/form-data">
+                    <fieldset class="form">
+                        <input type="file" name="file"/>
+                    </fieldset>
+                    <br>
+
+                    <p>Description: <g:textArea name="description"></g:textArea></p>
+                    <br>
+
+                    <p>Topic: <g:select name="topicID" from="${Topic.list()}" value="Topics" id="dropdownList"
+                                        optionKey="id" optionValue="name"></g:select></p>
+                    </div>
+
+                    <div id="container1">
+                        <div class="modal-footer">
+                    <g:submitButton id="shareButton" name="shareLink" value="share"
+                                    class="btn btn-primary"></g:submitButton>
+                </g:uploadForm>
+            </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button id="closeButton1" type="button" class="btn btn-danger"
                             data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -20,9 +20,9 @@ class Resource {
 
 
     static constraints = {
-        description blank: false,nullable: false
-        createdBy blank: false,nullable: false
-        topic blank: false, nullable: false
+        description blank: false,nullable: true
+        createdBy blank: false,nullable: true
+        topic blank: false, nullable: true
         dateCreated nullable: true
         lastUpdated nullable: true
 
